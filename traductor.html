@@ -403,12 +403,11 @@
       videos.forEach(video => {
         video.muted = true;
         video.volume = 0;
-        video.setAttribute('muted', ''); // Asegura que el atributo esté presente en el DOM
-        video.setAttribute('controls', '');
 
-        // Deshabilitar controles de volumen (opcional)
+        // Forzar el video a quedarse en mute cada vez que cambien el volumen
         video.addEventListener('volumechange', function () {
           if (this.volume > 0) this.volume = 0;
+          this.muted = true; // Asegurar que siga silenciado
         });
       });
     });
